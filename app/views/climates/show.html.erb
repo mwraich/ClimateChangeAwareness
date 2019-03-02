@@ -1,0 +1,98 @@
+<% response = @response[0] %>
+<button class="female"> Female </button>
+<button class="male"> Male </button>
+<button class="18-24"> 18-24 </button>
+<button class="35-49"> 35-49 </button>
+<!-- <button class="50-64"> 50-64 </button> -->
+
+<div id="total">
+  <h1> Total </h1>
+  <%= pie_chart ({
+    "Extremly Concerned" => (response["ExtremelyConcerned"].to_i),
+    "Very Concerned" => (response["VeryConcerned"].to_i),
+    "Not Very Concerned" => (response["NotVeryConcerned"].to_i),
+    "Not at All Concerned" => (response["NotAtAllConcerned"].to_i),
+    "Don't Know" => (response["don’TKnow"].to_i)
+    }) %>
+</div>
+<div id="female" class="hidden">
+  <h1> Female </h1>
+  <% response = @response[1] %>
+  <%= pie_chart ({
+    "Extremly Concerned" => (response["ExtremelyConcerned"].to_i),
+    "Very Concerned" => (response["VeryConcerned"].to_i),
+    "Not Very Concerned" => (response["NotVeryConcerned"].to_i),
+    "Not at All Concerned" => (response["NotAtAllConcerned"].to_i),
+    "Don't Know" => (response["don’TKnow"].to_i)
+  }) %>
+</div>
+<div id="male" class="hidden">
+  <h1> Male </h1>
+  <% response = @response[2] %>
+  <%= pie_chart ({
+    "Extremly Concerned" => (response["ExtremelyConcerned"].to_i),
+    "Very Concerned" => (response["VeryConcerned"].to_i),
+    "Not Very Concerned" => (response["NotVeryConcerned"].to_i),
+    "Not at All Concerned" => (response["NotAtAllConcerned"].to_i),
+    "Don't Know" => (response["don’TKnow"].to_i)
+    }) %>
+</div>
+
+<div id="18-24" class="hidden">
+  <h1> 18-24 </h1>
+  <% response = @response[3] %>
+  <%= pie_chart ({
+    "Extremly Concerned" => (response["ExtremelyConcerned"].to_i),
+    "Very Concerned" => (response["VeryConcerned"].to_i),
+    "Not Very Concerned" => (response["NotVeryConcerned"].to_i),
+    "Not at All Concerned" => (response["NotAtAllConcerned"].to_i),
+    "Don't Know" => (response["don’TKnow"].to_i)
+    }) %>
+</div>
+
+<div id="35-49" class="hidden">
+  <h1> 35-49 </h1>
+  <% response = @response[4] %>
+  <%= pie_chart ({
+    "Extremly Concerned" => (response["ExtremelyConcerned"].to_i),
+    "Very Concerned" => (response["VeryConcerned"].to_i),
+    "Not Very Concerned" => (response["NotVeryConcerned"].to_i),
+    "Not at All Concerned" => (response["NotAtAllConcerned"].to_i),
+    "Don't Know" => (response["don’TKnow"].to_i)
+    }) %>
+</div>
+
+<!-- <div id="50-64" class="hidden">
+  <h1> 50-64 </h1>
+  <% response = @response[5] %>
+  <%= pie_chart ({
+    "Extremly Concerned" => (response["ExtremelyConcerned"].to_i),
+    "Very Concerned" => (response["VeryConcerned"].to_i),
+    "Not Very Concerned" => (response["NotVeryConcerned"].to_i),
+    "Not at All Concerned" => (response["NotAtAllConcerned"].to_i),
+    "Don't Know" => (response["don’TKnow"].to_i)
+    }) %>
+</div> -->
+
+<script>
+    $('.female').on('click', function(e) {
+      $('#35-49, #18-24, #male, #total').hide();
+      $('#female').show();
+    });
+
+    $('.male').on('click', function(e) {
+      $('#35-49, #18-24, #female, #total').hide();
+      $('#male').show();
+    });
+
+    $('.18-24').on('click', function(e) {
+      $('#35-49, #male, #female, #total').hide();
+      $('#18-24').show();
+    });
+
+    $('.35-49').on('click', function(e) {
+      $('#18-24, #male, #female, #total').hide();
+      $('#35-49').show();
+    });
+
+</script>
