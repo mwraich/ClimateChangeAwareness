@@ -3,7 +3,8 @@
 <button class="male"> Male </button>
 <button class="18-24"> 18-24 </button>
 <button class="35-49"> 35-49 </button>
-<!-- <button class="50-64"> 50-64 </button> -->
+<button class="50-64"> 50-64 </button>
+<button class="65"> 65+ </button>
 
 <div id="total">
   <h1> Total </h1>
@@ -62,7 +63,7 @@
     }) %>
 </div>
 
-<!-- <div id="50-64" class="hidden">
+<div id="50-64" class="hidden">
   <h1> 50-64 </h1>
   <% response = @response[5] %>
   <%= pie_chart ({
@@ -72,27 +73,50 @@
     "Not at All Concerned" => (response["NotAtAllConcerned"].to_i),
     "Don't Know" => (response["don’TKnow"].to_i)
     }) %>
-</div> -->
+</div>
+
+<div id="65" class="hidden">
+  <h1> 65+ </h1>
+  <% response = @response[6] %>
+  <%= pie_chart ({
+    "Extremly Concerned" => (response["ExtremelyConcerned"].to_i),
+    "Very Concerned" => (response["VeryConcerned"].to_i),
+    "Not Very Concerned" => (response["NotVeryConcerned"].to_i),
+    "Not at All Concerned" => (response["NotAtAllConcerned"].to_i),
+    "Don't Know" => (response["don’TKnow"].to_i)
+    }) %>
+</div>
 
 <script>
     $('.female').on('click', function(e) {
-      $('#35-49, #18-24, #male, #total').hide();
+      $('#35-49, #18-24, #50-64, #65, #male, #total').hide();
       $('#female').show();
     });
 
     $('.male').on('click', function(e) {
-      $('#35-49, #18-24, #female, #total').hide();
+      $('#35-49, #50-64, #65, #18-24, #female, #total').hide();
       $('#male').show();
     });
 
     $('.18-24').on('click', function(e) {
-      $('#35-49, #male, #female, #total').hide();
+      $('#35-49, #50-64, #65, #male, #female, #total').hide();
       $('#18-24').show();
     });
 
     $('.35-49').on('click', function(e) {
-      $('#18-24, #male, #female, #total').hide();
+      $('#18-24, #50-64, #65, #male, #female, #total').hide();
       $('#35-49').show();
     });
+
+    $('.50-64').on('click', function(e) {
+      $('#18-24, #35-49, #65, #male, #female, #total').hide();
+      $('#50-64').show();
+    });
+
+    $('.65').on('click', function(e) {
+      $('#18-24, #35-49, #50-64, #65, #male, #female, #total').hide();
+      $('#65').show();
+    });
+
 
 </script>
